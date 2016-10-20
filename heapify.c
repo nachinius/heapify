@@ -35,6 +35,7 @@ void swap(heap_str *h, int i, int j) {
 }
 #define LEFT(i) (2*i)
 #define RIGHT(i) (LEFT(i)+1)
+
 void heap_maxify(heap_str *h, int i) {
     int a,b;
     int largest = i;
@@ -80,8 +81,9 @@ void heap_print_array(heap_str *h) {
 }
 
 /**
- * Sort an array of int of size 'size'
- * @param a initial allocated pointer to array
+ * Sort an array (in place) of int of `size` elements of type int
+ *
+ * @param a initial allocated pointer to array [sort in place]
  * @param size
  */
 heap_str * heap_sort(int *a, int size) {
@@ -92,6 +94,7 @@ heap_str * heap_sort(int *a, int size) {
     h->sizeOfHeap = size;
     h->sizeOfArray = size;
 
+    // build a max heap for array
     heap_build_max(h);
 
     for(int i=size; i>=2; i--) {
